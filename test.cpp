@@ -1,5 +1,5 @@
-#include "pch.h"
 #include "header.h"
+#include <gtest/gtest.h>
 #include<iostream>
 using namespace std;
 
@@ -589,3 +589,7 @@ TEST(display_tree, samepriority) {
     ASSERT_EQ(TreeOutput.str(), expectedInitialTreeOutput);
 }
 
+int main(int argc, char** argv) {
+    testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
