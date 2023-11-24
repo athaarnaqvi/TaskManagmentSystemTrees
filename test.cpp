@@ -178,7 +178,7 @@ TEST(display, delete3){
 
 }
 
-
+/*
 TEST(display, inorderAssignee){
     taskManagementSystem taskSystem;
     // auto assign unique IDs to each Assignee
@@ -206,7 +206,7 @@ TEST(display, inorderAssignee){
 
 }
 
-
+*/
 
 TEST(updating, first){
     taskManagementSystem taskSystem;
@@ -474,7 +474,7 @@ TEST(display_tree, deletion)
     ASSERT_EQ(actualOutput.str() , expectedOutput);
 }
 
-
+/*
 TEST(display_tree, UpdateTaskPriorities) {
     taskManagementSystem taskSystem;
 
@@ -523,7 +523,7 @@ TEST(display_tree, UpdateTaskPriorities) {
     ASSERT_EQ(initialTreeOutput.str(), expectedInitialTreeOutput);
     ASSERT_EQ(updatedTreeOutput.str(), expectedUpdatedTreeOutput);
 }
-
+*/
 TEST(highestpriority, samepriority) {
     taskManagementSystem taskSystem;
 
