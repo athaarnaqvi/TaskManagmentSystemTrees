@@ -1,19 +1,32 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
-- main
+- main  # Trigger the pipeline on pushes to the main branch
+- main  # Trigger the pipeline on pull requests targeting the main branch
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'  # Use the latest version of Ubuntu as the agent
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- checkout: self  # Checkout the source code repository
+
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'  # Use Python 3.x (if needed)
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    sudo apt-get update
+    sudo apt-get install -y g++ cmake
+  displayName: 'Install build dependencies'
+
+- script: |
+    sudo apt-get update
+    sudo apt-get install -y libgtest-dev
+    cd /usr/src/googletest
+    sudo cmake CMakeLists.txt
+    sudo make
+    sudo cp lib/libgtest*.a /usr/lib/
+  displayName: 'Install Google Test'
+
+- script: |
+    g++ test.cpp -lgtest -lpthread -o test
+    ./test
+  displayName: 'Build and Test'
